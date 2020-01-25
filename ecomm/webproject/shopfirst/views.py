@@ -3,12 +3,18 @@ from .forms import CustomerForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django import forms
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from .models import Category,Product,Order_Details,Orders,Customer,Cart
 from django.db.models import Count
+
+def dashboard1(request):
+    users = Customer.objects.all()
+    for i in users:
+        print(i)
+    return render(request, 'shop/dashboard.html', {'users': users})
 
 def index(request):
     #return HttpResponse("welcome to niit")
